@@ -13,7 +13,7 @@ Land formalization has received substantial development funding based on the pre
 The analysis draws on the following publicly available datasets:
 
 | Dataset | Local Directory |
-|---|---|
+|:---|:---|
 | [_Plans Fonciers Ruraux_ Impact Evaluation](https://microdata.worldbank.org/catalog/2530/data-dictionary) | `data/raw_data/WB_PFR_Baseline_2011/` |
 | [Harmonized Survey on Household Living Conditions - Round 1](https://microdata.worldbank.org/index.php/catalog/4291) |  `data/raw_data/EHCVM_STATA_2018/` |
 | [Harmonized Survey on Household Living Conditions - Round 2](https://microdata.worldbank.org/index.php/catalog/6272/) |  `data/raw_data/EHCVM_STATA_2021/` |
