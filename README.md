@@ -21,8 +21,6 @@ The analysis draws on the following publicly available datasets:
 
 # Replication
 
-## File Structure
-`data/raw_data/WB_PFR_Baseline_2011` 
 
 
 
