@@ -12,7 +12,7 @@ Land formalization has received substantial development funding based on the pre
 
 ### Plans Fonciers Ruraux Impact Evaluation 2011, Baseline Survey
 
-- Link to Data [https://microdata.worldbank.org/catalog/2530/data-dictionary]
+- [https://microdata.worldbank.org/catalog/2530/data-dictionary]
 - Modules Used: PRESELECTION, VILLAGES_CODES
 
 ### 
