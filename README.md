@@ -8,34 +8,21 @@ Land formalization has received substantial development funding based on the pre
 ## Key Findings
 
 
-## Data Sources
+## Data
 
-### Plans Fonciers Ruraux Impact Evaluation 2011, Baseline Survey
-See: data/raw_data/WB_PFR_Baseline_2011
+The analysis draws on the following publicly available datasets:
 
-- Source: [World Bank Microdata Library](https://microdata.worldbank.org/catalog/2530/data-dictionary)
-- Modules Used: PRESELECTION, VILLAGES_CODES
+| Dataset | Local Directory |
+|---|---|
+| [_Plans Fonciers Ruraux_ Impact Evaluation](https://microdata.worldbank.org/catalog/2530/data-dictionary) | `data/raw_data/WB_PFR_Baseline_2011/` |
+| [Harmonized Survey on Household Living Conditions - Round 1](https://microdata.worldbank.org/index.php/catalog/4291) |  `data/raw_data/EHCVM_STATA_2018/` |
+| [Harmonized Survey on Household Living Conditions - Round 2](https://microdata.worldbank.org/index.php/catalog/6272/) |  `data/raw_data/EHCVM_STATA_2021/` |
+| [Afrobarometer - Round 5 (Benin)](https://www.afrobarometer.org/survey-resource/benin-round-5-data-updated-july-2015/) |  `data/raw_data/Afrobarometer/` |
 
-Citation: Goldstein, M. (2015). Plans Fonciers Ruraux Impact Evaluation 2011, Baseline Survey [Dataset]. World Bank, Development Data Group. https://doi.org/10.48529/AM76-G093
+# Replication
 
-### Harmonized Survey on Household Living Conditions
-
-#### Survey Round 1: 2018-2019
-See: data/raw_data/EHCVM_STATA_2018
-
-- Source: [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/4291)
-- Modules Used: 
-
-Citation: Institut National de la Statistique et de l’Analyse Économique (INSAE) . (2022). Enquête Harmonisée sur le Conditions de Vie des Ménages 2018-2019 [Dataset]. World Bank, Development Data Group. https://doi.org/10.48529/RN3K-Z374
-
-
-#### Survey Round 2: 2021–2022
-See: data/raw_data/EHCVM_STATA_2021
-
-- Source: [World Bank Microdata Library](https://microdata.worldbank.org/index.php/catalog/6272/)
-- Modules Used: 
-
-Citation: Institut National de la Statistique et de l’Analyse Économique (INSAE) (Gouvernement du Benin). Benin - Enquête Harmonisée sur le Conditions de Vie des Ménages, 2021-2022 (BEN EHCVM-2 2021-2022). Ref: BEN_2021_EHCVM-2_v01_M.
+## File Structure
+`data/raw_data/WB_PFR_Baseline_2011` 
 
 
 
