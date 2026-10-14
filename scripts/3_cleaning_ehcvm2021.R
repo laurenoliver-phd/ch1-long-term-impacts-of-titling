@@ -17,9 +17,9 @@ setwd("~/YSE Dropbox/Lauren Oliver/Benin_land_titles/Lauren/LongTermEffects")
 
 ## Reading in village data
 
-load("~/YSE Dropbox/Lauren Oliver/Benin_land_titles/Lauren/LongTermEffects/data/02_temp/pfr_ehcvm.RData")
-load("data/03_clean/ht_weights.Rdata")
-adm4_codes <- read_excel("data/02_temp/ehcvm_adm4_final.xlsx") %>%
+load("~/chapter-1/data/processed/1_pfr_ehcvm.RData")
+load("~/chapter-1/data/processed/2_ht_weights.RData")
+adm4_codes <- read_excel("data/raw_data/adm4_codes.xlsx") %>%
   select(codevil, iddept, idcomm, idarro, idvill)
 
 pfr_ehcvm <- pfr_ehcvm %>%
@@ -27,21 +27,14 @@ pfr_ehcvm <- pfr_ehcvm %>%
   select(grappe, vague, treated, iddept, idcomm, depart, commune, arrond, village, codevil, type, PanelHH)%>%
   mutate(across(c(depart, commune, arrond, village), str_to_title))
 
-
-# pfr_ehcvm_sample <- pfr_ehcvm %>%
-#   group_by(commune) %>%
-#   mutate(commune_has_both = as.integer(any(treated == 1) & any(treated == 0))) %>%
-#   filter(commune_has_both == 1) %>%
-#   ungroup()
-
 pfr_ehcvm_sample <- pfr_ehcvm
 
 
 ## Reading in Data (2018, 2021)
-s01_me_ben2021 <- read_dta("data/00_manually-downloaded/EHCVM_2021_STATA/s01_me_ben2021.dta")
-s16a_me_ben2021 <- read_dta("data/00_manually-downloaded/EHCVM_2021_STATA/s16a_me_ben2021.dta")
-s16c_me_ben2021 <- read_dta("data/00_manually-downloaded/EHCVM_2021_STATA/s16c_me_ben2021.dta")
-s16d_me_ben2021 <- read_dta("data/00_manually-downloaded/EHCVM_2021_STATA/s16d_me_ben2021.dta")
+s01_me_ben2021 <- read_dta("data/raw_data/EHCVM_2021_STATA/s01_me_ben2021.dta")
+s16a_me_ben2021 <- read_dta("data/raw_data/EHCVM_2021_STATA/s16a_me_ben2021.dta")
+s16c_me_ben2021 <- read_dta("data/raw_data/EHCVM_2021_STATA/s16c_me_ben2021.dta")
+s16d_me_ben2021 <- read_dta("data/raw_data/EHCVM_2021_STATA/s16d_me_ben2021.dta")
 
 ehcvm_welfare_ben2021 <- read_dta("data/00_manually-downloaded/EHCVM_2021_STATA/ehcvm_welfare_ben2021.dta")
 

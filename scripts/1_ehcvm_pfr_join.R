@@ -1,18 +1,9 @@
 library(dplyr)
-library(tidyr)
-library(ggtext)
-library(fixest)
-library(vtable)
-library(modelsummary)
-library(broom)
-library(stringr)
-library(stringi)
-library(xtable)
-library(lubridate)
-library(haven)
 library(readxl)
 library(readr)
-library(writexl)
+library(haven)
+library(tidyr)
+library(stringr)
 
 ## Goals: 
 # 1. Add village names to all the EHCVM villages using the standard ADM4 codes
@@ -21,7 +12,8 @@ library(writexl)
 ### Step 1: Add village names to EHCVM data
 
 # Read in EHCVM data
-ehcvm2021 <- read_csv("~/YSE Dropbox/Lauren Oliver/Benin_land_titles/Lauren/data/00_manually-downloaded/BEN_2021_EHCVM/ehcvm_villages_stata.csv")
+
+ehcvm2021 <- read_dta("data/raw_data/EHCVM_2021_STATA/s00_me_ben2021.dta")
 
 ehcvm2021_groups <- ehcvm2021 %>%
   group_by(grappe) %>%
@@ -31,7 +23,7 @@ ehcvm2021_groups <- ehcvm2021 %>%
   mutate(village_key = str_squish(str_to_upper(s00q05)))
 
 # Read in ADM4 codes with village names
-adm4_codes <- read_excel("~/YSE Dropbox/Lauren Oliver/Benin_land_titles/Lauren/data/00_manually-downloaded/adm4_codes_fill.xlsx") %>%
+adm4_codes <- read_excel("data/raw_data/adm4_codes.xlsx") %>%
   mutate(village_key = str_squish(str_to_upper(village))) %>%   # normalize
   distinct(village_key, .keep_all = TRUE)                       # one row per village name
 
@@ -39,19 +31,22 @@ adm4_codes <- read_excel("~/YSE Dropbox/Lauren Oliver/Benin_land_titles/Lauren/d
 ehcvm_groups <- ehcvm2021_groups %>%
   left_join(adm4_codes, by = "village_key")
 
-# Export the joined data
-
-write_xlsx(
-  ehcvm_adm4_joined,
-  path = "ehcvm_adm4_joined_for_manual_fixes.xlsx"
-)
+# # Export the joined data
+# 
+# write_xlsx(
+#   ehcvm_adm4_joined,
+#   path = "ehcvm_adm4_joined_for_manual_fixes.xlsx"
+# )
 
 ######################
 
 # Step 2: Figure out which treatment/control villages from PFR and ProPFR are also in the EHCVM data
 
-ehcvm_adm4_final <- read_excel("~/YSE Dropbox/Lauren Oliver/Benin_land_titles/Lauren/data/00_manually-downloaded/BEN_2021_EHCVM/EHCVM2021_CSVs/ehcvm_adm4_final.xlsx")
-PFR_all <- read_csv("~/YSE Dropbox/Lauren Oliver/Benin_land_titles/Lauren/data/00_manually-downloaded/BEN_2021_EHCVM/EHCVM2021_CSVs/PFR_all.csv") %>%
+ehcvm_adm4_final <- read_excel("data/processed/1_ehcvm_adm4_final.xlsx")
+
+PFR_raw <- read_dta("data/raw_data/WB_PFR_Baseline_2011/BEN_2011_PFRIE-BL_v01_M_Stata8/PRESELECTION.dta")
+
+PFR_all <- PFR_raw %>%
   filter(treated == 1 | control == 1) %>%
   mutate(wb_survey = ifelse(edsb1 > 1, 1, 0)) %>%
   select(codevil, depart, commune, arrond, treated, emicov2006, emicov2010, wb_survey)
@@ -63,5 +58,5 @@ pfr_ehcvm <- PFR_all %>%
 
 nrow(pfr_ehcvm %>%filter(wb_survey == 1)) # 48 villages in Goldstein & EHCVM
 
-saveRDS(pfr_ehcvm, file = "pfr_ehcvm.rds")
+save(pfr_ehcvm, file = "data/processed/1_pfr_ehcvm.RData")
 
